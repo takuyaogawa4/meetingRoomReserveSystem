@@ -29,10 +29,12 @@
       reserveRoom: '',
       reserveTime: 0
     };
-    
+
+
     let popUp = false;
     let popUp2 = false;
     let alertMessage: boolean = false;
+    let reserveDataList:Array<ReserveData> =[];
 
     // 日付より先に会議室を選択した場合の関数
      async function getMeetingRoom(meetRoom: string){
@@ -41,12 +43,12 @@
         return false;
       }else{
         reserveData.reserveRoom = meetRoom;
-        await findByReserve(reserveData)
+        await findByReserve()
         popUp = true;
         alertMessage = false;
       }
-
     }
+    //$:reserveDataList
 
 
     // 予約確定の関数
@@ -63,22 +65,29 @@
       await insertMessage.json();
       }
     // 予約確認の関数
-    async function findByReserve(reserveData:ReserveData) {
-       alert(reserveData
-       )
+    async function findByReserve() {
+       console.log(reserveData)
       let reserveList = await fetch("http://localhost:8080/checkReserve",{
 
         method:"POST",
         headers:{
           "Content-Type":"application/json",
         },
-        body:JSON.stringify({reserveData}),
+        body:JSON.stringify(reserveData),
       });
-      const responseData = await reserveList.json();
-      console.log(responseData);
+        reserveDataList = await reserveList.json();
+      console.log(reserveDataList);
       // if(reserveList)
 
     }
+
+    // 予約確認のループ
+ function isReserved( a:number, b:ReserveData[]) {
+        console.log(reserveDataList)
+        console.log(reserveDataList.some(item => item.reserveTime ==a))
+        return  reserveDataList.some(item => item.reserveTime ==a);
+      }
+
 
 
 // // 予約登録の関数
@@ -140,19 +149,15 @@
     <!-- 予約ボタン -->
     <div  class="grid grid-cols-2 px-10">
     <!-- ifでくくってDBに予約が入っていたらdisableにする -->
-
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=10,popUp=false,popUp2=true)}>10:00～11:00</button>
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=11,popUp=false,popUp2=true)}>11:00～12:00</button>
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=12,popUp=false,popUp2=true)}>12:00～13:00</button>
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=13,popUp=false,popUp2=true)}>13:00～14:00</button>
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=14,popUp=false,popUp2=true)}>14:00～15:00</button>
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=15,popUp=false,popUp2=true)}>15:00～16:00</button>
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=16,popUp=false,popUp2=true)}>16:00～17:00</button>
-    <button class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=17,popUp=false,popUp2=true)}>17:00～18:00</button>
+      <button disabled="{isReserved(10,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=10,popUp=false,popUp2=true)}>10:00～11:00</button>
+      <button disabled="{isReserved(11,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=11,popUp=false,popUp2=true)}>11:00～12:00</button>
+      <button disabled="{isReserved(12,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=12,popUp=false,popUp2=true)}>12:00～13:00</button>
+      <button disabled="{isReserved(13,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=13,popUp=false,popUp2=true)}>13:00～14:00</button>
+      <button disabled="{isReserved(14,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=14,popUp=false,popUp2=true)}>14:00～15:00</button>
+      <button disabled="{isReserved(15,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=15,popUp=false,popUp2=true)}>15:00～16:00</button>
+      <button disabled="{isReserved(16,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=16,popUp=false,popUp2=true)}>16:00～17:00</button>
+      <button disabled="{isReserved(17,reserveDataList)}" class="btn btn-wide m-2" on:click={() => (reserveData.reserveTime=17,popUp=false,popUp2=true)}>17:00～18:00</button>
   </div>
-
-
-  
   <!-- popUpの下部コメント編集部分 -->
     <p class="py-4">空いている時間を選択してください。</p>
     <div class="modal-action">
