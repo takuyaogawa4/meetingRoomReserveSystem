@@ -18,8 +18,8 @@ public interface EmployeeMapper {
 
 
     //ログイン機能
-    @Select( "SELECT * FROM employee WHERE employeeName = #{employeeName} AND password = #{password}" )
-    String findByNameAndPassword(String employeeName,String password);
+    @Select( "SELECT * FROM employee WHERE employeeName = #{employeeName} " )
+    Employee findByName(String employeeName);
 
 
 //ログアウト機能

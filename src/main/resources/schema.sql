@@ -2,7 +2,8 @@ use human_resource_db;
 create table if not exists employee(
     employeeId int auto_increment not null primary key,
     employeeName varchar(255),
-    password varchar(255)
+    password varchar(255),
+    roles varchar(100)
     );
 
 create table if not exists reserve(
