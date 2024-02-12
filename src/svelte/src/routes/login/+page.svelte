@@ -8,38 +8,24 @@ async function handleLoginButtonClick() {
         alert("ログインIDとパスワードを入力してください。");
         return;
       }
-    // const response = await fetch("http://localhost:8080/login", {
-    //
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({username, password}),
-    // });
-    //
-    // const result = await response.json();
-    // if(!result) {
-    //   alert("ログインに失敗しました。");
-    // }else{
-    //   alert("ログインに成功しました。");
-    // }
+    const response = await fetch("http://localhost:8080/login", {
+
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({username, password}),
+    });
+
+    const result = await response.json();
+    if(!result) {
+      alert("ログインに失敗しました。");
+    }else{
+      alert("ログインに成功しました。");
+    }
   const url = new URL("http://localhost:8080/login");
   url.searchParams.append("username", username);
   url.searchParams.append("password", password);
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
-
-  // const result = await response.json();
-  // if (!result) {
-  //   alert("ログインに失敗しました。");
-  // } else {
-  //   alert("ログインに成功しました。");
-  // }
 
 }
 

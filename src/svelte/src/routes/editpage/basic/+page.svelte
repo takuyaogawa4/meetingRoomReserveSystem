@@ -91,31 +91,16 @@
 
 
 // // 予約登録の関数
-// async function insertReserve(reserveData){
-//       const response = await fetch("http://localhost:8080/checkReserve",{
-
-//         method:"GET",
-//         headers:{
-//           "Content-Type":"application/json",
-//         },
-//         body:JSON.stringify({reserveData}),
-//       });
-//     const result = await response.json();
-//     if(result == false){
-
-//     }
-    
-//     }
 </script>
 
 <h1 class="italic text-4xl mb-10">予約ページ</h1>
 <!-- 予約時に日付を入力していない場合のアラート -->
-<!--{#if alertMessage == true}-->
-<!--<div role="alert" class="alert alert-error mb-6" on:click={() => alertMessage = false}>-->
-<!--  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>-->
-<!--  <span>日付を選択してください。</span>-->
-<!--</div>-->
-<!--{/if}-->
+{#if alertMessage == true}
+<div role="alert" class="alert alert-error mb-6" on:click={() => alertMessage = false}>
+  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+  <span>日付を選択してください。</span>
+</div>
+{/if}
 <!-- 内容横たて並び -->
 
 <!-- カレンダーで日付を表示 -->
