@@ -8,10 +8,11 @@ export default {
 			// these options are set automatically — see below
 			pages: 'build',
 			assets: 'build',
-			fallback: undefined,
+			fallback: 'public.html',
 			precompress: false,
 			strict: true
 		}),
+		appDir:'public'
 	},
 	preprocess: vitePreprocess()
 };

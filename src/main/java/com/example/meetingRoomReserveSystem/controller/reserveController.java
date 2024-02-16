@@ -14,19 +14,30 @@ public class reserveController {
     @Autowired
     ReserveService reserveService;
 
-    @RequestMapping ("/checkReserve")
+    @RequestMapping("/checkReserve")
     @ResponseBody
-    public List<Reserve> checkReserve(@RequestBody Reserve reserve){
-        List<Reserve> aaaaa = reserveService.findByReserve( reserve.getReserveDate(),reserve.getReserveRoom());
-        return aaaaa;
+    public List<Reserve> checkReserve(@RequestBody Reserve reserve) {
+        List<Reserve> reserveList = reserveService.findByReserve( reserve.getReserveDate(), reserve.getReserveRoom() );
+        return reserveList;
     }
+
     @PostMapping("/insertReserve")
-    public String insertReserve(@RequestBody Reserve reserve){
+    public void insertReserve(@RequestBody Reserve reserve) {
         //TODO change jason
-        String insertMessage = reserveService.insertReserve( reserve );
+        reserveService.insertReserve( reserve );
 
+    }
 
-        return insertMessage;
+    @GetMapping("/getReserve/{employeeId}")
+    public List<Reserve> getReserve(@PathVariable int employeeId) {
+
+        return reserveService.findByAllReserve( employeeId );
+
+    }
+
+    @GetMapping("/deleteReserve/{reserveId}")
+    public void deleteReserve(@PathVariable int reserveId) {
+        reserveService.deleteReserve( reserveId );
     }
 
 }

@@ -11,5 +11,5 @@ public class Reserve {
     private String reserveRoom;
     private Date reserveDate;
     private int reserveTime;
-    
+
 }

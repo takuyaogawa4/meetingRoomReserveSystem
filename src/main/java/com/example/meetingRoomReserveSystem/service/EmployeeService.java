@@ -1,44 +1,34 @@
 package com.example.meetingRoomReserveSystem.service;
+
 import com.example.meetingRoomReserveSystem.entity.Employee;
+import com.example.meetingRoomReserveSystem.entity.JsonResponse;
 import com.example.meetingRoomReserveSystem.mapper.EmployeeMapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @EnableTransactionManagement
-
-
 public class EmployeeService {
-
     @Autowired
     EmployeeMapper employeeMapper;
 
-    //    社員登録
+    //    社員登録の名前チェック
     @Transactional
-    public String insertEmployee(Employee employee) {
-        employeeMapper.insertEmployee( employee );
-        return "登録が完了しました。";
+    public JsonResponse checkEmployeeName(Employee employee) {
+        int check = employeeMapper.insertEmployee( employee );
+        if (check > 0) {
+            return new JsonResponse( 0, "登録が完了しました。" );
+        } else {
+            return new JsonResponse( 1, "登録が失敗しました。" );
+        }
+
+    }
+
+    public List<Employee> findUser(Employee employee) {
+        return employeeMapper.findUser( employee );
     }
 }
-
-    //    ログイン機能
-//    public Optional<User> findByName(String employeeName) {
-//        return null;
-
-//    public String findByNameAndPassword(Employee employee){
-
-
-//        if(employeeMapper.findByNameAndPassword(employee.getEmployeeName(),employee.getPassword()) != null){
-//
-//            return "true";
-//        }else{
-//            return "false";
-//        }
-//    }
-
