@@ -1,0 +1,3 @@
+①application.propertiesのspring.datasource.usernameとpasswordを設定　DBはMySQL
+②svelteのフォルダに移動し、npm installを実行(node.jsが実行出来る環境が必要)
+動作しない場合、GradleのsvelteCopyというタスクをビルド前に実行　と設定し、サーバーを再起動する。
