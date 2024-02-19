@@ -60,7 +60,6 @@
 
         if (result.result == 0) {
             alert("登録が完了しました。");
-            sessionStorage.setItem("loginUser", JSON.stringify(result.data))
             goto("/home")
         } else {
             alert("ログインIDは既に使われております。");

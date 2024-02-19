@@ -2,9 +2,9 @@
 </script>
 <div>
 <section
-  class="h-[80vh] shrink-0 bg-secondary-800 flex flex-col items-center justify-center"
+  class="h-full shrink-0 bg-secondary-800 flex flex-col items-center justify-center"
 ><div class="glass mb-5 flex text-5xl font-bold h-96 w-1/2 rounded-lg items-center justify-center text-center">
-タイトル
+Welcome to MeetingRoomReserveSystem!
     </div>
   <video
     class="absolute w-full h-full object-cover -z-10"
@@ -19,12 +19,7 @@
 </section>
 
 </div>
-<div class="card w-96 bg-primary text-primary-content"></div>
-<div class="card-body">
-  <h2 class="card-title">Card title!</h2>
-  <p>If a dog chews shoes whose shoes does he choose?</p>
-  <div class="card-actions justify-end"></div>
-</div>
+
 
 <style>
   video {
