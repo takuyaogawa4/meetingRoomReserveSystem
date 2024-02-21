@@ -28,6 +28,7 @@ public class EmployeeService {
 
     }
 
+//    ログイン時の名前がDBに存在するかをチェック
     public List<Employee> findUser(Employee employee) {
         return employeeMapper.findUser( employee );
     }

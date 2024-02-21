@@ -17,11 +17,8 @@
             </div>
         </div>
     </a>
-    <!-- 項目 -->
 </div>
-
 <style>
-
     a:hover button {
         background-color: black;
         color: white;

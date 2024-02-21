@@ -4,17 +4,22 @@
   import { afterUpdate } from "svelte";
   let loginUser = "";
 
+  //ページ更新のたびにSessionStorageを更新してユーザーを確認する
   afterUpdate(() => {
     let loginUserJason = sessionStorage.getItem("loginUser");
     if (loginUserJason != null) {
+      // ログインしていた場合は、オブジェクトの中の従業員名を変換してloginUserに入れる
       loginUser = JSON.parse(loginUserJason).employeeName;
     }
   });
   function logout(){
+    //sessionStorageから情報を削除する
     sessionStorage.removeItem("loginUser");
+    //getItemでloginUser情報を取得してnullであるかを確認してif文でloginUserに""を挿入する
     let loginUserJason = sessionStorage.getItem("loginUser");
     if(loginUserJason == null){
       alert("logout!!")
+      //空白を入れることでナビバーのユーザー名を表示・非表示を切り替える
       loginUser = "";
       goto("/")
     }
@@ -47,6 +52,7 @@
   </label>
   <!-- 背景色の変更ボタン -->
 
+<!--  ナビバー-->
   <div class="px-[10%] py-30">
     <div class="navbar bg-neutral text-neutral-content">
       <div class="flex-1">
@@ -54,10 +60,8 @@
           >Reserve Room</button>
         <button class="btn btn-ghost text-xl" on:click={() => goto("/home/mypage")}>Mypage</button>
       </div>
-      <!--      <button class="btn btn-ghost text-xl" on:click={() => goto("/login")}-->
-      <!--        >Login</button-->
-      <!--      >-->
       <div class="flex-none">
+<!--        loginUserの中身が""であるかを確認する-->
         {#if loginUser !== null && loginUser !== ""}
           <button class="btn btn-ghost text-xl pd-100" on:click={() => goto("/home/mypage")}>{loginUser}</button>
           <button class="btn btn-ghost text-xl pd-100"on:click={() => logout()}>Logout</button>

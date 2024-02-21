@@ -18,12 +18,13 @@ public class loginController {
     @PostMapping("/login")
     @ResponseBody
     public JsonResponse checkReserve(@RequestBody Employee employee, HttpServletRequest request) {
-        JsonResponse jsonResponse = new JsonResponse();
+        //念のためリストを使用　返却の値が複数出た場合
         List<Employee> employeeList = employeeService.findUser( employee );
+        //　ログイン失敗用　(結果　0が成功　1が失敗)
         if (employeeList == null || employeeList.size() == 0) {
             return new JsonResponse( 1, "not Found" );
         }
-        request.getSession().setAttribute( "employee", employeeList.get( 0 ) );
+        //  ログイン成功用　(結果　0が成功　1が失敗)
         return new JsonResponse( 0, "success", employeeList.get( 0 ) );
     }
 }

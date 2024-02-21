@@ -10,6 +10,7 @@ public class rootController {
         return "public";
     }
 
+//    フォールバック用
     @GetMapping("/home/**")
     public String home() {
         return "public";

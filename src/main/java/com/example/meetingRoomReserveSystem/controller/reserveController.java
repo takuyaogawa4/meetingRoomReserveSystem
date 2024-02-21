@@ -14,6 +14,7 @@ public class reserveController {
     @Autowired
     ReserveService reserveService;
 
+//    予約確認
     @RequestMapping("/checkReserve")
     @ResponseBody
     public List<Reserve> checkReserve(@RequestBody Reserve reserve) {
@@ -21,6 +22,7 @@ public class reserveController {
         return reserveList;
     }
 
+//    予約登録
     @PostMapping("/insertReserve")
     public void insertReserve(@RequestBody Reserve reserve) {
         //TODO change jason
@@ -28,13 +30,14 @@ public class reserveController {
 
     }
 
+//    マイページ表示（ユーザーの予約表示）
     @GetMapping("/getReserve/{employeeId}")
     public List<Reserve> getReserve(@PathVariable int employeeId) {
 
         return reserveService.findByAllReserve( employeeId );
 
     }
-
+//    ユーザーの予約の削除
     @GetMapping("/deleteReserve/{reserveId}")
     public void deleteReserve(@PathVariable int reserveId) {
         reserveService.deleteReserve( reserveId );

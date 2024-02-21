@@ -65,10 +65,10 @@
     }
 
     // 予約確認のループ
-    function isReserved(a: number, b: ReserveData[]) {
-        console.log(reserveDataList)
-        console.log(reserveDataList.some(item => item.reserveTime == a))
-        return reserveDataList.some(item => item.reserveTime == a);
+    function isReserved(reserveTime: number, reserveList: ReserveData[]) {
+        console.log(reserveList)
+        console.log(reserveList.some(item => item.reserveTime == reserveTime))
+        return reserveList.some(item => item.reserveTime == reserveTime);
     }
 </script>
 

@@ -15,20 +15,16 @@ public interface ReserveMapper {
     //    ログイン者だけの予約確認
     @Select("SELECT * FROM reserve WHERE employeeId = #{employeeId}")
     List<Reserve> findByAllReserve(int employeeId);
-//    予約の削除
-
 
     //    予約確認
     @Select("SELECT * FROM reserve WHERE reserveRoom = #{reserveRoom} AND reserveDate = #{reserveDate}")
     List<Reserve> findByReserve(Date reserveDate, String reserveRoom);
 
-//    予約確定
-//@Options(useGeneratedKeys = true,keyProperty = "reserveId")
-
+    //    予約確定
     @Insert("INSERT INTO reserve(employeeId,reserveRoom,reserveDate,reserveTime) VALUES (#{employeeId},#{reserveRoom},#{reserveDate},#{reserveTime})")
     int insertReserve(Reserve reserve);
 
-    //予約削除
+    //      予約削除
     @Delete("DELETE FROM reserve WHERE reserveId = #{reserveId}")
     int deleteByReserve(int reserveId);
 }

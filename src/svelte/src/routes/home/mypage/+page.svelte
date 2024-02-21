@@ -7,10 +7,13 @@
     let popUp = false;
     let reserveList: ReserveData[] = [];
     let selectedItem: ReserveData;
+    // 読み込み時に実行
     onMount(async () => {
+        // loginUserをセットする
         let loginUserJson = sessionStorage.getItem("loginUser");
         if (loginUserJson !== null) {
             let employeeId = JSON.parse(loginUserJson).employeeId;
+            // セットしたloginUserのemployeeIdで予約情報を確認して表示する
             let response = await fetch(`http://localhost:8080/getReserve/${employeeId}`)
             console.log(response)
             reserveList = await response.json();
@@ -19,10 +22,12 @@
 
     });
 
+    // 削除ボタン
     function selectItem(item: ReserveData) {
         selectedItem = item;
     }
 
+    // 予約の日付をフォーマットする
     function formatDate(dateString: string | null) {
         let target: string = "";
         if (dateString != null) {

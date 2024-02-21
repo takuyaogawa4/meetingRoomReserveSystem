@@ -12,6 +12,7 @@
 
     // ログイン関数
     async function handleLoginButtonClick() {
+        //名前とパスワードのスペースを削除　空白　nullの場合　アラート発動
         if (!loginEmployeeName || !loginPassword || loginEmployeeName.trim() === "" || loginPassword.trim() === "") {
             alert("ログインIDとパスワードを入力してください。");
             return;
@@ -31,6 +32,7 @@
 
         if (result.result == 0) {
             alert("ログインに成功しました。");
+            //戻り値(ユーザー情報の部分)をsessionStorageに保管してログインを保持
             sessionStorage.setItem("loginUser", JSON.stringify(result.data))
             goto("/home")
         } else {
@@ -96,6 +98,7 @@
     </div>
     <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Create" checked/>
     <div role="tabpanel" class="tab-content"><label class="form-control w-full max-w-xs">
+        <!-- 入力項目 -->
         <div class="label">
             <span class="label-text">Name</span>
         </div>
@@ -114,7 +117,7 @@
             <div class="label">
             </div>
         </label>
-        <!-- ログインボタン -->
+        <!-- 新規登録ボタン -->
         <button class="btn btn-active   bg-base-200 hover:bg-base-300" on:click={handleCreateButtonClick}>Create
         </button>
     </div>
